@@ -1,0 +1,30 @@
+# Data
+data/
+*.csv
+*.parquet
+*.pkl
+*.h5
+
+# Model weights
+*.pt
+*.pth
+*.bin
+models/
+
+# Python
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+.venv/
+venv/
+env/
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+
+# Kaggle
+kaggle.json
