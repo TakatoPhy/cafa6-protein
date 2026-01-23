@@ -4,6 +4,10 @@ data/
 *.parquet
 *.pkl
 *.h5
+*.npy
+
+# Submissions
+submission*.tsv
 
 # Model weights
 *.pt
