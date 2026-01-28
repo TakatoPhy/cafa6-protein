@@ -15,6 +15,19 @@ Predict protein function (Gene Ontology terms) from amino acid sequences.
 - Entry: 2026-01-26
 - Final: 2026-02-02
 
+## Current Status
+
+**Rank: 45 / 2113 (Top 2.1%) - Silver Medal Zone**
+
+| Date | Score | Rank | Approach |
+|------|-------|------|----------|
+| 2026-01-28 | **0.387** | **45** | Merged SOTA + ESM2 notebooks |
+| 2026-01-28 | 0.386 | 88 | SOTA 27Jan notebook |
+| 2026-01-27 | 0.375 | 371 | GOA + ProtT5 ensemble |
+| 2026-01-24 | 0.208 | - | ESM2 + GO expansion |
+
+**Total improvement: 0.114 → 0.387 (+239%)**
+
 ## Submission History
 
 | Version | Approach | # Terms | Score | Notes |
@@ -24,9 +37,10 @@ Predict protein function (Gene Ontology terms) from amino acid sequences.
 | v3 | NN MLP (320 dim) | 668 | 0.165 | ESM-Cambrian embeddings |
 | v4 | v3 + GO expansion | 668 | error | File too large (224MB) |
 | v5 | NN MLP (1280 dim) | 1170 | 0.200 | ESM2-650M embeddings |
-| v6 | v5 + GO expansion | 1170+ | **0.208** | Optimized expansion |
-
-**Total improvement: 0.114 → 0.208 (+82%)**
+| v6 | v5 + GO expansion | 1170+ | 0.208 | Optimized expansion |
+| v7 | Public notebook merge | - | 0.375 | GOA + ProtT5 ensemble |
+| v8 | SOTA 27Jan | - | 0.386 | jakupymeraj notebook |
+| **v9** | **Merged SOTA + ESM2** | - | **0.387** | **Average ensemble** |
 
 ## Key Learnings
 
