@@ -17,11 +17,14 @@ Predict protein function (Gene Ontology terms) from amino acid sequences.
 
 ## Current Status
 
-**Rank: 45 / 2113 (Top 2.1%) - Silver Medal Zone**
+**Rank: ~61 / 2168 (Top 2.8%) - Silver Medal Zone**
+
+**Gold Medal Target: 0.408 (Need +0.021 improvement)**
 
 | Date | Score | Rank | Approach |
 |------|-------|------|----------|
 | 2026-01-28 | **0.387** | **45** | Merged SOTA + ESM2 notebooks |
+| 2026-01-31 | 0.386 | ~61 | 3-model merge (no improvement) |
 | 2026-01-28 | 0.386 | 88 | SOTA 27Jan notebook |
 | 2026-01-27 | 0.375 | 371 | GOA + ProtT5 ensemble |
 | 2026-01-24 | 0.208 | - | ESM2 + GO expansion |
@@ -62,6 +65,12 @@ Predict protein function (Gene Ontology terms) from amino acid sequences.
 - Train embedding IDs: `sp|A0A0C5B5G6|MOTSC_HUMAN`
 - train_terms.tsv IDs: `A0A0C5B5G6`
 - Need to extract middle part: `id.split('|')[1]`
+
+### 5. CRITICAL: Do NOT Filter Submissions (2026-01-31)
+- **Do NOT filter by test set proteins** - Public notebooks output Train+Test
+- **Do NOT apply Top-K limits** - Keep all predictions
+- **Filtering causes massive score drop**: 0.387 → 0.279 (-28%)
+- Simple average merge without filtering is the safest approach
 
 ## Structure
 
