@@ -1,34 +1,26 @@
-# Data
-data/
+# Large data files
+*.tsv
+*.tsv.gz
 *.csv
-*.parquet
-*.pkl
-*.h5
-*.npy
-
-# Submissions
-submission*.tsv
-
-# Model weights
 *.pt
 *.pth
-*.bin
-models/
+*.pkl
+*.pickle
+*.h5
+*.hdf5
+
+# Submission files
+submissions/
+
+# External notebook outputs
+notebooks/external/*/submission.tsv
+notebooks/external/*/*.png
 
 # Python
 __pycache__/
 *.py[cod]
 .ipynb_checkpoints/
-.venv/
+
+# Environment
+.env
 venv/
-env/
-
-# IDE
-.vscode/
-.idea/
-
-# OS
-.DS_Store
-
-# Kaggle
-kaggle.json
