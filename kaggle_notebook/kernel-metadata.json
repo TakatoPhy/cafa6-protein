@@ -1,0 +1,13 @@
+{
+  "id": "takatophy/cafa6-goa-prott5-ensemble",
+  "title": "CAFA6 GOA+ProtT5 Ensemble",
+  "code_file": "cafa6-goa-prott5-ensemble.ipynb",
+  "language": "python",
+  "kernel_type": "notebook",
+  "is_private": "true",
+  "enable_gpu": "false",
+  "enable_internet": "false",
+  "dataset_sources": ["ymuroya47/cafa6-goa-predictions"],
+  "competition_sources": ["cafa-6-protein-function-prediction"],
+  "kernel_sources": []
+}

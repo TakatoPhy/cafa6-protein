@@ -1,0 +1,40 @@
+[{"stream_name":"stderr","time":6.646527799,"data":"0.00s - Debugger warning: It seems that frozen modules are being used, which may\n"}
+,{"stream_name":"stderr","time":6.646636043,"data":"0.00s - make the debugger miss breakpoints. Please pass -Xfrozen_modules=off\n"}
+,{"stream_name":"stderr","time":6.646645969,"data":"0.00s - to python to disable frozen modules.\n"}
+,{"stream_name":"stderr","time":6.64665019,"data":"0.00s - Note: Debugging will proceed. Set PYDEVD_DISABLE_FILE_VALIDATION=1 to disable this validation.\n"}
+,{"stream_name":"stderr","time":7.239082629,"data":"0.00s - Debugger warning: It seems that frozen modules are being used, which may\n"}
+,{"stream_name":"stderr","time":7.239123473,"data":"0.00s - make the debugger miss breakpoints. Please pass -Xfrozen_modules=off\n"}
+,{"stream_name":"stderr","time":7.239127761,"data":"0.00s - to python to disable frozen modules.\n"}
+,{"stream_name":"stderr","time":7.239130284,"data":"0.00s - Note: Debugging will proceed. Set PYDEVD_DISABLE_FILE_VALIDATION=1 to disable this validation.\n"}
+,{"stream_name":"stdout","time":11.496664544,"data":"Configuration loaded.\n"}
+,{"stream_name":"stdout","time":11.697059845,"data":"[1/4] Parsing OBO into DAG from /kaggle/input/cafa-6-protein-function-prediction/Train/go-basic.obo...\n"}
+,{"stream_name":"stdout","time":12.491675662,"data":"      -\u003e Calculating Topological Order...\n"}
+,{"stream_name":"stdout","time":12.491724704,"data":"[2/4] Loading submission...\n"}
+,{"stream_name":"stdout","time":39.134340141,"data":"[3/4] Propagating Scores (Hard Max)...\n"}
+,{"stream_name":"stdout","time":39.134398836,"data":"      -\u003e Grouping data...\n"}
+,{"stream_name":"stdout","time":834.984935926,"data":"[4/4] Saving improved submission (55558156 rows)...\n"}
+,{"stream_name":"stdout","time":911.020703272,"data":"------------------------------------------------\n"}
+,{"stream_name":"stdout","time":911.020764636,"data":"[Done] Saved to submission.tsv\n"}
+,{"stream_name":"stdout","time":911.020770422,"data":"------------------------------------------------\n"}
+,{"stream_name":"stdout","time":911.02077462,"data":"   protein_id     go_term  score\n"}
+,{"stream_name":"stdout","time":911.02077833,"data":"0  A0A009IHW8  GO:0003953  1.005\n"}
+,{"stream_name":"stdout","time":911.020782331,"data":"1  A0A009IHW8  GO:0007165  1.005\n"}
+,{"stream_name":"stdout","time":911.020789881,"data":"2  A0A009IHW8  GO:0016787  1.006\n"}
+,{"stream_name":"stdout","time":911.020795933,"data":"3  A0A009IHW8  GO:0019677  1.006\n"}
+,{"stream_name":"stdout","time":911.020802,"data":"4  A0A009IHW8  GO:0050135  1.006\n"}
+,{"stream_name":"stdout","time":912.838045812,"data":"Generating Comparison Plots...\n"}
+,{"stream_name":"stderr","time":926.797265394,"data":"/usr/local/lib/python3.12/dist-packages/mistune.py:435: SyntaxWarning: invalid escape sequence '\\|'\n"}
+,{"stream_name":"stderr","time":926.79730614,"data":"  cells[i][c] = re.sub('\\\\\\\\\\|', '|', cell)\n"}
+,{"stream_name":"stderr","time":926.937069403,"data":"/usr/local/lib/python3.12/dist-packages/nbconvert/filters/filter_links.py:36: SyntaxWarning: invalid escape sequence '\\_'\n"}
+,{"stream_name":"stderr","time":926.93710993,"data":"  text = re.sub(r'_', '\\_', text) # Escape underscores in display text\n"}
+,{"stream_name":"stderr","time":927.573471094,"data":"/usr/local/lib/python3.12/dist-packages/traitlets/traitlets.py:2915: FutureWarning: --Exporter.preprocessors=[\"remove_papermill_header.RemovePapermillHeader\"] for containers is deprecated in traitlets 5.0. You can pass `--Exporter.preprocessors item` ... multiple times to add items to a list.\n"}
+,{"stream_name":"stderr","time":927.573506406,"data":"  warn(\n"}
+,{"stream_name":"stderr","time":927.604478777,"data":"[NbConvertApp] Converting notebook __notebook__.ipynb to notebook\n"}
+,{"stream_name":"stderr","time":927.906024861,"data":"[NbConvertApp] Writing 94248 bytes to __notebook__.ipynb\n"}
+,{"stream_name":"stderr","time":930.271511986,"data":"/usr/local/lib/python3.12/dist-packages/traitlets/traitlets.py:2915: FutureWarning: --Exporter.preprocessors=[\"nbconvert.preprocessors.ExtractOutputPreprocessor\"] for containers is deprecated in traitlets 5.0. You can pass `--Exporter.preprocessors item` ... multiple times to add items to a list.\n"}
+,{"stream_name":"stderr","time":930.271551244,"data":"  warn(\n"}
+,{"stream_name":"stderr","time":930.296679473,"data":"[NbConvertApp] Converting notebook __notebook__.ipynb to html\n"}
+,{"stream_name":"stderr","time":931.133444859,"data":"[NbConvertApp] Support files will be in __results___files/\n"}
+,{"stream_name":"stderr","time":931.133481138,"data":"[NbConvertApp] Making directory __results___files\n"}
+,{"stream_name":"stderr","time":931.133689541,"data":"[NbConvertApp] Writing 318010 bytes to __results__.html\n"}
+]
