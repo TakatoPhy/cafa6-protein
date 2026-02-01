@@ -9,8 +9,14 @@ Extends protboost_1000 to cover more terms:
 This gives better coverage of the GO hierarchy while focusing
 compute on the most important aspects.
 
+Features:
+- Checkpoint every 500 terms (training)
+- Checkpoint every 10K proteins (prediction)
+- Resume from checkpoint with --resume
+
 Usage:
     python scripts/protboost_4500.py [--gpu]
+    python scripts/protboost_4500.py --resume models/protboost_ckpt_2000.pkl
 """
 import numpy as np
 import pandas as pd
@@ -92,7 +98,12 @@ def main():
     parser.add_argument('--embedding', type=str, default='esm2_650M',
                         help='Embedding name (esm2_650M, protT5_xl, ankh_large)')
     parser.add_argument('--save-models', action='store_true', default=True, help='Save trained models (default: True)')
+    parser.add_argument('--resume', type=str, help='Resume from checkpoint file')
+    parser.add_argument('--checkpoint-interval', type=int, default=500, help='Save checkpoint every N terms')
     args = parser.parse_args()
+
+    CHECKPOINT_DIR = MODELS_DIR / 'checkpoints'
+    CHECKPOINT_DIR.mkdir(parents=True, exist_ok=True)
 
     print("=== ProtBoost 4500 ===\n")
 
@@ -184,12 +195,26 @@ def main():
         lgb_params['gpu_use_dp'] = False
         print("\nUsing GPU for training")
 
-    # Train models
+    # Train models (with checkpoint support)
     print(f"\nTraining LightGBM for {n_terms} terms...")
+
+    # Check for resume
+    start_idx = 0
     models = []
     val_aucs = []
 
-    for i, term in enumerate(top_terms):
+    if args.resume and Path(args.resume).exists():
+        print(f"\nResuming from checkpoint: {args.resume}")
+        with open(args.resume, 'rb') as f:
+            ckpt = pickle.load(f)
+        models = ckpt['models']
+        val_aucs = ckpt['val_aucs']
+        start_idx = ckpt['last_idx'] + 1
+        print(f"  Loaded {len(models)} models, resuming from term {start_idx}")
+
+    for i in range(start_idx, n_terms):
+        term = top_terms[i]
+
         if i % 200 == 0:
             print(f"  Training term {i+1}/{n_terms}...", flush=True)
 
@@ -222,6 +247,19 @@ def main():
             auc = 0
         val_aucs.append(auc)
 
+        # Checkpoint every N terms
+        if (i + 1) % args.checkpoint_interval == 0:
+            ckpt_path = CHECKPOINT_DIR / f'protboost_train_ckpt_{i+1}.pkl'
+            with open(ckpt_path, 'wb') as f:
+                pickle.dump({
+                    'models': models,
+                    'val_aucs': val_aucs,
+                    'last_idx': i,
+                    'top_terms': top_terms,
+                    'pca': pca,
+                }, f)
+            print(f"  ✓ Checkpoint saved: {ckpt_path.name}")
+
     mean_auc = np.mean([a for a in val_aucs if a > 0])
     print(f"\nMean validation AUC: {mean_auc:.4f}")
 
@@ -238,17 +276,32 @@ def main():
             }, f)
         print(f"\nSaved models: {model_path}")
 
-    # Generate predictions - MEMORY EFFICIENT VERSION
-    # Write directly to file instead of accumulating in array
-    print("\nGenerating test predictions (memory-efficient)...")
+    # Generate predictions - MEMORY EFFICIENT VERSION with checkpoints
+    print("\nGenerating test predictions (memory-efficient with checkpoints)...")
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
     output_path = OUTPUT_DIR / f'protboost_4500_{args.embedding}.tsv'
+    pred_ckpt_path = CHECKPOINT_DIR / 'protboost_pred_progress.txt'
+
+    # Check for prediction resume
+    start_protein_idx = 0
+    if pred_ckpt_path.exists():
+        with open(pred_ckpt_path, 'r') as f:
+            start_protein_idx = int(f.read().strip())
+        print(f"  Resuming predictions from protein {start_protein_idx}")
+        mode = 'a'
+    else:
+        mode = 'w'
 
     row_count = 0
-    with open(output_path, 'w') as f:
-        for i, pid in enumerate(test_ids):
+    with open(output_path, mode) as f:
+        for i in range(start_protein_idx, len(test_ids)):
+            pid = test_ids[i]
+
             if i % 10000 == 0:
                 print(f"  Predicting protein {i+1}/{len(test_ids)}...", flush=True)
+                # Save progress checkpoint
+                with open(pred_ckpt_path, 'w') as pf:
+                    pf.write(str(i))
 
             # Get embedding for this protein
             x_protein = X_test_pca[i:i+1]
@@ -262,6 +315,10 @@ def main():
                 if score >= 0.01:
                     f.write(f"{pid}\t{term}\t{score:.6f}\n")
                     row_count += 1
+
+    # Clean up checkpoint
+    if pred_ckpt_path.exists():
+        pred_ckpt_path.unlink()
 
     print(f"\nSaved: {output_path}")
     print(f"Rows: {row_count:,}")
