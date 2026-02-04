@@ -1,3 +1,4 @@
+"""Merge 5 model submissions using geometric mean."""
 import pandas as pd
 import numpy as np
 

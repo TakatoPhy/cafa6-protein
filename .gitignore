@@ -8,9 +8,21 @@
 *.pickle
 *.h5
 *.hdf5
+*.npy
+*.npz
+
+# Data directories
+data/Train/
+data/Test/
+data/embeddings/
+data/processed/
+data/goa_predictions/
+data/notebooks_output/
+data/*.zip
 
 # Submission files
 submissions/
+past_submissions/
 
 # External notebook outputs
 notebooks/external/*/submission.tsv
@@ -24,3 +36,8 @@ __pycache__/
 # Environment
 .env
 venv/
+
+# Misc
+*.log
+*.bak
+.DS_Store

@@ -1,3 +1,4 @@
+"""Merge 4 model submissions using memory-efficient inner join."""
 import pandas as pd
 import numpy as np
 

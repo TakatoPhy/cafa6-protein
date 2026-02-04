@@ -1,3 +1,4 @@
+"""Merge 4 model submissions (SOTA, ESM2, Ensemble378, GOA) using outer join and mean averaging."""
 import pandas as pd
 import numpy as np
 

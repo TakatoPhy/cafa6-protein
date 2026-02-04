@@ -1,3 +1,4 @@
+"""Create a 2-model geometric mean ensemble from SOTA and ESM2 submissions."""
 import pandas as pd
 import numpy as np
 
