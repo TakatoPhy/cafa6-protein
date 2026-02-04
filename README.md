@@ -1,6 +1,6 @@
 # CAFA 6 Protein Function Prediction
 
-**Silver Medal** | Final Score: **0.387** | Top 2.8% (61st / 2168 teams)
+**Silver Medal** | Final Score: **0.387** | Top 3.9% (88th / 2259 teams)
 
 [Competition Page](https://www.kaggle.com/competitions/cafa-6-protein-function-prediction)
 
@@ -20,7 +20,7 @@
 |------|-------|
 | Final Score | **0.387** |
 | Medal | Silver |
-| Rank | 61 / 2168 (Top 2.8%) |
+| Rank | 88 / 2259 (Top 3.9%) |
 | Total Submissions | 22 |
 | Best Approach | Arithmetic mean of two public SOTA notebooks |
 
